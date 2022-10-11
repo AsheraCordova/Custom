@@ -1,7 +1,7 @@
 {
-  "name": "com.ashera.customplugin",
+  "name": "com.ashera.custom",
   "version": "1.0.0",
-  "description": "@description@",
+  "description": "Custom Plugin",
   "author": "Ram M",
   "license": "ISC"
 }
