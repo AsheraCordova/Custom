@@ -57,7 +57,7 @@
   </platform>
   
   <platform name="browser">
-    <config-file target="res/xml/config.xml" parent="/*">
+    <config-file target="config.xml" parent="/*">
       <feature name="CustomCordovaPlugin">
         <param name="android-package" value="com.ashera.custom.CustomCordovaPlugin"/>
         <param name="onload" value="true" />
