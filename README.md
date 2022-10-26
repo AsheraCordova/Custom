@@ -11,3 +11,44 @@ The following functionality can be extended :
 * Image loader
 
 The custom plugin can be cloned and used as starting point for developing custom crossplatform code based on java.
+
+## Custom Validator
+
+A example of custom validator is given below:
+```
+package com.ashera.custom;
+
+import com.ashera.validations.BaseValidator;
+import com.ashera.validations.Validation;
+import com.ashera.widget.IWidget;
+
+public class CustomValidator extends BaseValidator{
+
+	@Override
+	public Validation newInstance(String... argument) {
+		return new CustomValidator();
+	}
+
+	@Override
+	public String getDefaultErrorMessage(IWidget widget) {
+		String res = com.ashera.utils.ResourceBundleUtils.getString("values/strings", "string", "@string/lowercase_error_message", widget.getFragment());
+		return res;
+	}
+
+	@Override
+	public boolean isValid(String str, IWidget widget) {
+		if (str == null || str.trim().equals("")) {
+			return true;
+		}
+		
+		return str.toLowerCase().equals(str);
+	}
+
+}
+```
+
+Register the validator on load of the plugin:
+
+```
+ValidatorFactory.register("lowercaseonly", new CustomValidator());
+```
