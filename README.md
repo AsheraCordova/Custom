@@ -68,7 +68,7 @@ Use this validator in ui:
 
 ```
 
-Custom Method Expression Handler:
+## Custom Method Expression Handler
 
 A example of custom expression handler is given below:
 
