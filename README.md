@@ -4,7 +4,7 @@ Ashera provides cross platform support using Java and typescript language while 
 
 The following functionality can be extended :
 * Validation
-* Method Expression Handlers
+* Method Expression Handler
 * Widget
 * Attribute for widget
 * Converter
