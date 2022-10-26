@@ -52,3 +52,18 @@ Register the validator on load of the plugin:
 ```
 ValidatorFactory.register("lowercaseonly", new CustomValidator());
 ```
+
+Use this validator in ui:
+
+```
+<EditText
+	android:id="@+id/validation0"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	formGroupId="test"
+	android:layout_margin="10dp"
+	android:minHeight="50dp"
+	android:background="#ff0"
+	validation="lowercaseonly"></View>
+
+```
