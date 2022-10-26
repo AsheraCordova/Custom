@@ -64,6 +64,6 @@ Use this validator in ui:
 	android:layout_margin="10dp"
 	android:minHeight="50dp"
 	android:background="#ff0"
-	validation="lowercaseonly"></View>
+	validation="lowercaseonly" />
 
 ```
