@@ -67,3 +67,72 @@ Use this validator in ui:
 	validation="lowercaseonly" />
 
 ```
+
+Custom Method Expression Handler:
+
+A example of custom expression handler is given below:
+
+```
+package com.ashera.custom;
+
+import java.util.Map;
+
+import com.ashera.model.MethodHandler;
+import com.ashera.widget.IWidget;
+
+public class CustomMethodHandler implements com.ashera.model.MethodHandler {
+
+	@Override
+	public String handle(String methodName, Object obj, IWidget widget) {
+		switch (methodName) {
+		case "pointsEarned":
+			int points = 0;			
+			if (obj instanceof Map) {
+				Map<String, Object> map = (Map<String, Object>)obj;
+				Integer quantity = 0; 
+				try {
+					quantity = com.ashera.widget.PluginInvoker.getInt(map.get("noOfItems"));
+				} catch (NumberFormatException e) {
+				}
+				Integer tradePrice = 0;
+				try {
+					tradePrice = com.ashera.widget.PluginInvoker.getInt(map.get("tradePrice"));
+				} catch (NumberFormatException e) {
+				}
+				Integer memberPrice = com.ashera.widget.PluginInvoker.getInt(map.get("memPrice"));
+			
+				if (quantity != null && tradePrice != null && memberPrice != null) {
+					points = quantity * (tradePrice - memberPrice);
+					if (points < 0) {
+						points = 0;
+					}
+				}
+			}
+			
+
+			return points + "";
+
+		default:
+			break;
+		}
+		return MethodHandler.UNHANDLED;
+	}
+}
+
+```
+Register the handler on load of the plugin:
+```
+MethodHandlerFactory.register(new CustomMethodHandler());
+```
+
+The custom expression can be used in ui as follows:
+```
+    <TextView
+	style="@style/h1_bold_black"
+	modelPojoToUi="text = pointsEarned(.) from item->view"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="10dp"></TextView>
+```
+
+
