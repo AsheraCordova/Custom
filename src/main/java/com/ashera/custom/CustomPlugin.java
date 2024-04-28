@@ -8,5 +8,6 @@ public class CustomPlugin {
 		ValidatorFactory.register("lowercaseonly", new CustomValidator());
 		MethodHandlerFactory.register(new CustomMethodHandler());
 		com.ashera.widget.EventCommandFactory.registerCommand("custom", new CustomEventCommand());
+		com.ashera.converter.FilterFactory.register(LowerCaseSuffixFilter.class.getName(), new LowerCaseSuffixFilter());
 	}
 }

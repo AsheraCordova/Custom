@@ -20,6 +20,7 @@
      <source-file src="src/main/java/com/ashera/custom/CustomMethodHandler.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomPlugin.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomValidator.java" target-dir="src/com/ashera/custom"/>
+     <source-file src="src/main/java/com/ashera/custom/LowerCaseSuffixFilter.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomEventCommand.java" target-dir="src/com/ashera/custom"/>
      <source-file src="android/src/com/ashera/custom/CustomCordovaPlugin.java" target-dir="src/com/ashera/custom"/>
   </platform>
@@ -41,6 +42,8 @@
      <source-file src="ios/src/CustomValidator.m" target-dir="CustomPlugin/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
      <header-file src="ios/src/CustomEventCommand.h" target-dir="CustomPlugin/ios/src"/>
      <source-file src="ios/src/CustomEventCommand.m" target-dir="CustomPlugin/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
+     <header-file src="ios/src/LowerCaseSuffixFilter.h" target-dir="CustomPlugin/ios/src"/>
+     <source-file src="ios/src/LowerCaseSuffixFilter.m" target-dir="CustomPlugin/ios/src" compiler-flags="-fobjc-arc-exceptions"/>
      <!-- ios end -->
   </platform>
   <platform name="swt">
@@ -55,6 +58,7 @@
      <source-file src="src/main/java/com/ashera/custom/CustomMethodHandler.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomPlugin.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomValidator.java" target-dir="src/com/ashera/custom"/>
+     <source-file src="src/main/java/com/ashera/custom/LowerCaseSuffixFilter.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomEventCommand.java" target-dir="src/com/ashera/custom"/>
      <!-- src#main#java end -->
      <source-file src="android/src/com/ashera/custom/CustomCordovaPlugin.java" target-dir="src/com/ashera/custom"/>
@@ -72,6 +76,7 @@
      <source-file src="src/main/java/com/ashera/custom/CustomMethodHandler.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomPlugin.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomValidator.java" target-dir="src/com/ashera/custom"/>
+     <source-file src="src/main/java/com/ashera/custom/LowerCaseSuffixFilter.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomEventCommand.java" target-dir="src/com/ashera/custom"/>
      <!-- src#main#java end -->
      <source-file src="android/src/com/ashera/custom/CustomCordovaPlugin.java" target-dir="src/com/ashera/custom"/>

@@ -8,7 +8,10 @@
 #include "CustomPlugin.h"
 #include "CustomValidator.h"
 #include "EventCommandFactory.h"
+#include "FilterFactory.h"
+#include "IOSClass.h"
 #include "J2ObjC_source.h"
+#include "LowerCaseSuffixFilter.h"
 #include "MethodHandlerFactory.h"
 #include "ValidatorFactory.h"
 
@@ -61,6 +64,7 @@ void ASCustomPlugin_init__() {
   ASValidatorFactory_register__WithNSString_withASValidation_(@"lowercaseonly", new_ASCustomValidator_init());
   ASMethodHandlerFactory_register__WithASMethodHandler_(new_ASCustomMethodHandler_init());
   ASEventCommandFactory_registerCommandWithNSString_withASEventCommand_(@"custom", new_ASCustomEventCommand_init());
+  ASFilterFactory_register__WithNSString_withASIFilter_([ASLowerCaseSuffixFilter_class_() getName], new_ASLowerCaseSuffixFilter_init());
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASCustomPlugin)
