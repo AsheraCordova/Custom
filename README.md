@@ -12,12 +12,17 @@ The following functionality can be extended :
 
 The custom plugin can be cloned and used as starting point for developing custom crossplatform code based on java.
 
+## Installation
 To install the plugin use:
 
 ```
 git clone https://github.com/AsheraCordova/Custom.git
 cordova plugin add ./Custom
 ```
+## Important Links
+https://asheracordova.github.io/
+
+https://asheracordova.github.io/doc/help-doc.html
 
 ## Custom Validator
 
