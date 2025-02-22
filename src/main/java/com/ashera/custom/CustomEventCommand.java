@@ -1,5 +1,6 @@
 package com.ashera.custom;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.ashera.widget.EventExpressionParser;
@@ -23,15 +24,48 @@ public class CustomEventCommand implements com.ashera.widget.EventCommand{
 				IWidget motionLayout = widget.findWidgetById("@+id/motioncontent");
 				float slideOffset = (float) params[1];
 				motionLayout.setAttribute("progress", slideOffset, true);
-				
+
 				IWidget drawerlayout = widget.findWidgetById("@+id/drawerlayoutstart");
 				drawerlayout.setAttribute("progress", slideOffset, true);
 
+				break;
+			}
+
+			case "onCloseIconClick": {
+				IWidget chipGroup = widget.findNearestView("@+id/chip_group");
+				chipGroup.setAttribute("removeChip", widget.getId(), true);
+				chipGroup.requestLayout();
+				chipGroup.getFragment().remeasure();;
+				break;
+			}
+			case "onTextChanged": {
+				String s = params[0].toString();
+				if(s != null && !s.isEmpty()){
+					if (s.length() == 1 && s.endsWith(",")) {
+						widget.setAttribute("text", "", true);
+					} else if (s.length() > 1 && s.endsWith(",")) {
+						widget.setAttribute("text", "", true);
+						s = s.replace(",","");
+						addChipToGroup(widget, s);
+					}
+				}
 				break;
 			}
 		}
 
 		return null;
 	}
-	
+
+	private static void addChipToGroup(IWidget widget, String s) {
+		HashMap<String, Object> chipParams = new HashMap<>();
+		chipParams.put("chipId", "@+id/" + s);
+		chipParams.put("text", s);
+		chipParams.put("chipParams", "closeIconVisible: true; onCloseIconClick: +custom#onCloseIconClick()");
+
+		IWidget chipGroup = widget.findNearestView("@+id/chip_group");
+		chipGroup.setAttribute("addChip", chipParams, true);
+		chipGroup.requestLayout();
+		chipGroup.getFragment().remeasure();;
+	}
+
 }

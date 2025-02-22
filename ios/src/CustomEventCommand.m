@@ -5,13 +5,24 @@
 
 #include "CustomEventCommand.h"
 #include "EventExpressionParser.h"
+#include "IFragment.h"
 #include "IOSObjectArray.h"
 #include "IWidget.h"
 #include "J2ObjC_source.h"
 #include "java/lang/Float.h"
 #include "java/lang/Integer.h"
+#include "java/util/HashMap.h"
 #include "java/util/Map.h"
 
+
+@interface ASCustomEventCommand ()
+
++ (void)addChipToGroupWithASIWidget:(id<ASIWidget>)widget
+                       withNSString:(NSString *)s;
+
+@end
+
+__attribute__((unused)) static void ASCustomEventCommand_addChipToGroupWithASIWidget_withNSString_(id<ASIWidget> widget, NSString *s);
 
 @implementation ASCustomEventCommand
 
@@ -26,7 +37,7 @@ J2OBJC_IGNORE_DESIGNATED_END
                   withJavaUtilMap:(id<JavaUtilMap>)eventObject
                 withNSObjectArray:(IOSObjectArray *)params {
   NSString *event = (NSString *) cast_chk([((id<JavaUtilMap>) nil_chk(eventObject)) getWithId:ASEventExpressionParser_KEY_SCRIPT_NAME], [NSString class]);
-  switch (JreIndexOfStr(event, (id[]){ @"onPageScrolled", @"onDrawerSlide" }, 2)) {
+  switch (JreIndexOfStr(event, (id[]){ @"onPageScrolled", @"onDrawerSlide", @"onCloseIconClick", @"onTextChanged" }, 4)) {
     case 0:
     {
       jint numPages = 10;
@@ -46,23 +57,55 @@ J2OBJC_IGNORE_DESIGNATED_END
       [((id<ASIWidget>) nil_chk(drawerlayout)) setAttributeWithNSString:@"progress" withId:JavaLangFloat_valueOfWithFloat_(slideOffset) withBoolean:true];
       break;
     }
+    case 2:
+    {
+      id<ASIWidget> chipGroup = [((id<ASIWidget>) nil_chk(widget)) findNearestViewWithNSString:@"@+id/chip_group"];
+      [((id<ASIWidget>) nil_chk(chipGroup)) setAttributeWithNSString:@"removeChip" withId:[widget getId] withBoolean:true];
+      [chipGroup requestLayout];
+      [((id<ASIFragment>) nil_chk([chipGroup getFragment])) remeasure];
+      
+      ;
+      break;
+    }
+    case 3:
+    {
+      NSString *s = [nil_chk(IOSObjectArray_Get(nil_chk(params), 0)) description];
+      if (s != nil && ![s java_isEmpty]) {
+        if ([s java_length] == 1 && [s java_hasSuffix:@","]) {
+          [((id<ASIWidget>) nil_chk(widget)) setAttributeWithNSString:@"text" withId:@"" withBoolean:true];
+        }
+        else if ([s java_length] > 1 && [s java_hasSuffix:@","]) {
+          [((id<ASIWidget>) nil_chk(widget)) setAttributeWithNSString:@"text" withId:@"" withBoolean:true];
+          s = [s java_replace:@"," withSequence:@""];
+          ASCustomEventCommand_addChipToGroupWithASIWidget_withNSString_(widget, s);
+        }
+      }
+      break;
+    }
   }
   return nil;
+}
+
++ (void)addChipToGroupWithASIWidget:(id<ASIWidget>)widget
+                       withNSString:(NSString *)s {
+  ASCustomEventCommand_addChipToGroupWithASIWidget_withNSString_(widget, s);
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static J2ObjcMethodInfo methods[] = {
     { NULL, NULL, 0x1, -1, -1, -1, -1, -1, -1 },
     { NULL, "LNSObject;", 0x81, 0, 1, -1, 2, -1, -1 },
+    { NULL, "V", 0xa, 3, 4, -1, -1, -1, -1 },
   };
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Wobjc-multiple-method-names"
   #pragma clang diagnostic ignored "-Wundeclared-selector"
   methods[0].selector = @selector(init);
   methods[1].selector = @selector(executeCommandWithASIWidget:withJavaUtilMap:withNSObjectArray:);
+  methods[2].selector = @selector(addChipToGroupWithASIWidget:withNSString:);
   #pragma clang diagnostic pop
-  static const void *ptrTable[] = { "executeCommand", "LASIWidget;LJavaUtilMap;[LNSObject;", "(Lcom/ashera/widget/IWidget;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;[Ljava/lang/Object;)Ljava/lang/Object;" };
-  static const J2ObjcClassInfo _ASCustomEventCommand = { "CustomEventCommand", "com.ashera.custom", ptrTable, methods, NULL, 7, 0x1, 2, 0, -1, -1, -1, -1, -1 };
+  static const void *ptrTable[] = { "executeCommand", "LASIWidget;LJavaUtilMap;[LNSObject;", "(Lcom/ashera/widget/IWidget;Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;[Ljava/lang/Object;)Ljava/lang/Object;", "addChipToGroup", "LASIWidget;LNSString;" };
+  static const J2ObjcClassInfo _ASCustomEventCommand = { "CustomEventCommand", "com.ashera.custom", ptrTable, methods, NULL, 7, 0x1, 3, 0, -1, -1, -1, -1, -1 };
   return &_ASCustomEventCommand;
 }
 
@@ -78,6 +121,20 @@ ASCustomEventCommand *new_ASCustomEventCommand_init() {
 
 ASCustomEventCommand *create_ASCustomEventCommand_init() {
   J2OBJC_CREATE_IMPL(ASCustomEventCommand, init)
+}
+
+void ASCustomEventCommand_addChipToGroupWithASIWidget_withNSString_(id<ASIWidget> widget, NSString *s) {
+  ASCustomEventCommand_initialize();
+  JavaUtilHashMap *chipParams = new_JavaUtilHashMap_init();
+  (void) [chipParams putWithId:@"chipId" withId:JreStrcat("$$", @"@+id/", s)];
+  (void) [chipParams putWithId:@"text" withId:s];
+  (void) [chipParams putWithId:@"chipParams" withId:@"closeIconVisible: true; onCloseIconClick: +custom#onCloseIconClick()"];
+  id<ASIWidget> chipGroup = [((id<ASIWidget>) nil_chk(widget)) findNearestViewWithNSString:@"@+id/chip_group"];
+  [((id<ASIWidget>) nil_chk(chipGroup)) setAttributeWithNSString:@"addChip" withId:chipParams withBoolean:true];
+  [chipGroup requestLayout];
+  [((id<ASIFragment>) nil_chk([chipGroup getFragment])) remeasure];
+  
+  ;
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASCustomEventCommand)
