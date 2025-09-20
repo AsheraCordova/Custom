@@ -3,9 +3,22 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\LowerCaseSuffixFilter.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "LowerCaseSuffixFilter.h"
+#include "java/lang/Boolean.h"
+#include "java/lang/Integer.h"
+
+
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 @implementation ASLowerCaseSuffixFilter
@@ -17,9 +30,9 @@ J2OBJC_IGNORE_DESIGNATED_BEGIN
 }
 J2OBJC_IGNORE_DESIGNATED_END
 
-- (jboolean)filterWithNSString:(NSString *)value
-                  withNSString:(NSString *)query {
-  jboolean matches = false;
+- (bool)filterWithNSString:(NSString *)value
+              withNSString:(NSString *)query {
+  bool matches = false;
   if (query == nil || [query java_length] == 0) {
     return true;
   }
@@ -37,8 +50,8 @@ J2OBJC_IGNORE_DESIGNATED_END
       NSString * const *b__ = ((IOSObjectArray *) nil_chk(a__))->buffer_;
       NSString * const *e__ = b__ + a__->size_;
       while (b__ < e__) {
-        NSString *word = *b__++;
-        if ([((NSString *) nil_chk([((NSString *) nil_chk(word)) lowercaseString])) java_hasSuffix:query]) {
+        NSString *word = RETAIN_AND_AUTORELEASE(*b__++);
+        if ([((NSString *) nil_chk([word lowercaseString])) java_hasSuffix:query]) {
           matches = true;
           break;
         }
@@ -79,3 +92,5 @@ ASLowerCaseSuffixFilter *create_ASLowerCaseSuffixFilter_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASLowerCaseSuffixFilter)
+
+J2OBJC_NAME_MAPPING(ASLowerCaseSuffixFilter, "com.ashera.custom", "AS")

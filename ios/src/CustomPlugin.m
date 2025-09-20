@@ -3,6 +3,11 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomPlugin.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "CustomEventCommand.h"
 #include "CustomMethodHandler.h"
 #include "CustomPlugin.h"
@@ -14,6 +19,12 @@
 #include "LowerCaseSuffixFilter.h"
 #include "MethodHandlerFactory.h"
 #include "ValidatorFactory.h"
+
+
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 @implementation ASCustomPlugin
@@ -68,3 +79,5 @@ void ASCustomPlugin_init__() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASCustomPlugin)
+
+J2OBJC_NAME_MAPPING(ASCustomPlugin, "com.ashera.custom", "AS")

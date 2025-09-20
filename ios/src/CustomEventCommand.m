@@ -3,16 +3,29 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomEventCommand.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "CustomEventCommand.h"
 #include "EventExpressionParser.h"
 #include "IFragment.h"
 #include "IOSObjectArray.h"
 #include "IWidget.h"
 #include "J2ObjC_source.h"
+#include "java/lang/Boolean.h"
 #include "java/lang/Float.h"
 #include "java/lang/Integer.h"
 #include "java/util/HashMap.h"
 #include "java/util/Map.h"
+
+
+@class NSString;
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 @interface ASCustomEventCommand ()
@@ -40,18 +53,18 @@ J2OBJC_IGNORE_DESIGNATED_END
   switch (JreIndexOfStr(event, (id[]){ @"onPageScrolled", @"onDrawerSlide", @"onCloseIconClick", @"onTextChanged" }, 4)) {
     case 0:
     {
-      jint numPages = 10;
+      int32_t numPages = 10;
       id<ASIWidget> motionLayout = [((id<ASIWidget>) nil_chk(widget)) findNearestViewWithNSString:@"@+id/header"];
-      jint position = [((JavaLangInteger *) nil_chk((JavaLangInteger *) cast_chk(IOSObjectArray_Get(nil_chk(params), 0), [JavaLangInteger class]))) intValue];
-      jfloat positionOffset = [((JavaLangFloat *) nil_chk((JavaLangFloat *) cast_chk(IOSObjectArray_Get(params, 1), [JavaLangFloat class]))) floatValue];
-      jfloat progress = (position + positionOffset) / (numPages - 1);
+      int32_t position = [((JavaLangInteger *) nil_chk((JavaLangInteger *) cast_chk(IOSObjectArray_Get(nil_chk(params), 0), [JavaLangInteger class]))) intValue];
+      float positionOffset = [((JavaLangFloat *) nil_chk((JavaLangFloat *) cast_chk(IOSObjectArray_Get(params, 1), [JavaLangFloat class]))) floatValue];
+      float progress = (position + positionOffset) / (numPages - 1);
       [((id<ASIWidget>) nil_chk(motionLayout)) setAttributeWithNSString:@"progress" withId:JavaLangFloat_valueOfWithFloat_(progress) withBoolean:true];
       break;
     }
     case 1:
     {
       id<ASIWidget> motionLayout = [((id<ASIWidget>) nil_chk(widget)) findWidgetByIdWithNSString:@"@+id/motioncontent"];
-      jfloat slideOffset = [((JavaLangFloat *) nil_chk((JavaLangFloat *) cast_chk(IOSObjectArray_Get(nil_chk(params), 1), [JavaLangFloat class]))) floatValue];
+      float slideOffset = [((JavaLangFloat *) nil_chk((JavaLangFloat *) cast_chk(IOSObjectArray_Get(nil_chk(params), 1), [JavaLangFloat class]))) floatValue];
       [((id<ASIWidget>) nil_chk(motionLayout)) setAttributeWithNSString:@"progress" withId:JavaLangFloat_valueOfWithFloat_(slideOffset) withBoolean:true];
       id<ASIWidget> drawerlayout = [widget findWidgetByIdWithNSString:@"@+id/drawerlayoutstart"];
       [((id<ASIWidget>) nil_chk(drawerlayout)) setAttributeWithNSString:@"progress" withId:JavaLangFloat_valueOfWithFloat_(slideOffset) withBoolean:true];
@@ -70,7 +83,7 @@ J2OBJC_IGNORE_DESIGNATED_END
     case 3:
     {
       NSString *s = [nil_chk(IOSObjectArray_Get(nil_chk(params), 0)) description];
-      if (s != nil && ![s java_isEmpty]) {
+      if (s != nil && ![s isEmpty]) {
         if ([s java_length] == 1 && [s java_hasSuffix:@","]) {
           [((id<ASIWidget>) nil_chk(widget)) setAttributeWithNSString:@"text" withId:@"" withBoolean:true];
         }
@@ -138,3 +151,5 @@ void ASCustomEventCommand_addChipToGroupWithASIWidget_withNSString_(id<ASIWidget
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASCustomEventCommand)
+
+J2OBJC_NAME_MAPPING(ASCustomEventCommand, "com.ashera.custom", "AS")

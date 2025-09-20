@@ -3,6 +3,7 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomValidator.java
 //
 
+#import <Foundation/Foundation.h>
 #include "J2ObjC_header.h"
 
 #pragma push_macro("INCLUDE_ALL_CustomValidator")
@@ -21,6 +22,8 @@
 #include "BaseValidator.h"
 
 @class IOSObjectArray;
+@class JavaLangBoolean;
+@class NSString;
 @protocol ASIWidget;
 @protocol ASValidation;
 
@@ -32,8 +35,8 @@
 
 - (NSString *)getDefaultErrorMessageWithASIWidget:(id<ASIWidget>)widget;
 
-- (jboolean)isValidWithNSString:(NSString *)str
-                  withASIWidget:(id<ASIWidget>)widget;
+- (bool)isValidWithNSString:(NSString *)str
+              withASIWidget:(id<ASIWidget>)widget;
 
 - (id<ASValidation>)newInstanceWithNSStringArray:(IOSObjectArray *)argument OBJC_METHOD_FAMILY_NONE;
 
@@ -50,6 +53,7 @@ FOUNDATION_EXPORT ASCustomValidator *create_ASCustomValidator_init(void);
 J2OBJC_TYPE_LITERAL_HEADER(ASCustomValidator)
 
 @compatibility_alias ComAsheraCustomCustomValidator ASCustomValidator;
+
 
 #endif
 

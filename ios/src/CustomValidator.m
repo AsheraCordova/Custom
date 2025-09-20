@@ -3,6 +3,11 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomValidator.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "BaseValidator.h"
 #include "CustomValidator.h"
 #include "IFragment.h"
@@ -11,6 +16,13 @@
 #include "J2ObjC_source.h"
 #include "ResourceBundleUtils.h"
 #include "Validation.h"
+#include "java/lang/Boolean.h"
+
+
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 @implementation ASCustomValidator
@@ -31,8 +43,8 @@ J2OBJC_IGNORE_DESIGNATED_END
   return res;
 }
 
-- (jboolean)isValidWithNSString:(NSString *)str
-                  withASIWidget:(id<ASIWidget>)widget {
+- (bool)isValidWithNSString:(NSString *)str
+              withASIWidget:(id<ASIWidget>)widget {
   if (str == nil || [((NSString *) nil_chk([str java_trim])) isEqual:@""]) {
     return true;
   }
@@ -74,3 +86,5 @@ ASCustomValidator *create_ASCustomValidator_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASCustomValidator)
+
+J2OBJC_NAME_MAPPING(ASCustomValidator, "com.ashera.custom", "AS")

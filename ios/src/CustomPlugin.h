@@ -3,6 +3,7 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomPlugin.java
 //
 
+#import <Foundation/Foundation.h>
 #include "J2ObjC_header.h"
 
 #pragma push_macro("INCLUDE_ALL_CustomPlugin")
@@ -39,6 +40,7 @@ FOUNDATION_EXPORT void ASCustomPlugin_init__(void);
 J2OBJC_TYPE_LITERAL_HEADER(ASCustomPlugin)
 
 @compatibility_alias ComAsheraCustomCustomPlugin ASCustomPlugin;
+
 
 #endif
 

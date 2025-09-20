@@ -3,6 +3,7 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\LowerCaseSuffixFilter.java
 //
 
+#import <Foundation/Foundation.h>
 #include "J2ObjC_header.h"
 
 #pragma push_macro("INCLUDE_ALL_LowerCaseSuffixFilter")
@@ -20,14 +21,17 @@
 #define INCLUDE_ASIFilter 1
 #include "IFilter.h"
 
+@class JavaLangBoolean;
+@class NSString;
+
 @interface ASLowerCaseSuffixFilter : NSObject < ASIFilter >
 
 #pragma mark Public
 
 - (instancetype)init;
 
-- (jboolean)filterWithNSString:(NSString *)value
-                  withNSString:(NSString *)query;
+- (bool)filterWithNSString:(NSString *)value
+              withNSString:(NSString *)query;
 
 @end
 
@@ -42,6 +46,7 @@ FOUNDATION_EXPORT ASLowerCaseSuffixFilter *create_ASLowerCaseSuffixFilter_init(v
 J2OBJC_TYPE_LITERAL_HEADER(ASLowerCaseSuffixFilter)
 
 @compatibility_alias ComAsheraCustomLowerCaseSuffixFilter ASLowerCaseSuffixFilter;
+
 
 #endif
 

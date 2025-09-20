@@ -3,6 +3,7 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomEventCommand.java
 //
 
+#import <Foundation/Foundation.h>
 #include "J2ObjC_header.h"
 
 #pragma push_macro("INCLUDE_ALL_CustomEventCommand")
@@ -47,6 +48,7 @@ FOUNDATION_EXPORT ASCustomEventCommand *create_ASCustomEventCommand_init(void);
 J2OBJC_TYPE_LITERAL_HEADER(ASCustomEventCommand)
 
 @compatibility_alias ComAsheraCustomCustomEventCommand ASCustomEventCommand;
+
 
 #endif
 

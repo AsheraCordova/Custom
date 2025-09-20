@@ -3,6 +3,11 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomMethodHandler.java
 //
 
+#define J2OBJC_IMPORTED_BY_JAVA_IMPLEMENTATION 1
+
+
+
+
 #include "CustomMethodHandler.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"
@@ -13,6 +18,12 @@
 #include "java/lang/Integer.h"
 #include "java/lang/NumberFormatException.h"
 #include "java/util/Map.h"
+
+
+
+
+#pragma clang diagnostic error "-Wreturn-type"
+#pragma clang diagnostic ignored "-Wswitch"
 
 
 @implementation ASCustomMethodHandler
@@ -28,7 +39,7 @@ J2OBJC_IGNORE_DESIGNATED_END
                           withId:(id)obj
                    withASIWidget:(id<ASIWidget>)widget {
   {
-    jint points;
+    int32_t points;
     switch (JreIndexOfStr(methodName, (id[]){ @"pointsEarned" }, 1)) {
       case 0:
       points = 0;
@@ -93,3 +104,5 @@ ASCustomMethodHandler *create_ASCustomMethodHandler_init() {
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ASCustomMethodHandler)
+
+J2OBJC_NAME_MAPPING(ASCustomMethodHandler, "com.ashera.custom", "AS")

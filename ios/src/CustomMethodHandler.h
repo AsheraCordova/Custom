@@ -3,6 +3,7 @@
 //  source: D:\Java\git\core-widget_library\CustomPlugin\src\main\java\com\ashera\custom\CustomMethodHandler.java
 //
 
+#import <Foundation/Foundation.h>
 #include "J2ObjC_header.h"
 
 #pragma push_macro("INCLUDE_ALL_CustomMethodHandler")
@@ -20,6 +21,7 @@
 #define INCLUDE_ASMethodHandler 1
 #include "MethodHandler.h"
 
+@class NSString;
 @protocol ASIWidget;
 
 @interface ASCustomMethodHandler : NSObject < ASMethodHandler >
@@ -45,6 +47,7 @@ FOUNDATION_EXPORT ASCustomMethodHandler *create_ASCustomMethodHandler_init(void)
 J2OBJC_TYPE_LITERAL_HEADER(ASCustomMethodHandler)
 
 @compatibility_alias ComAsheraCustomCustomMethodHandler ASCustomMethodHandler;
+
 
 #endif
 
