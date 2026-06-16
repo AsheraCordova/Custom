@@ -23,6 +23,7 @@
      <source-file src="src/main/java/com/ashera/custom/LowerCaseSuffixFilter.java" target-dir="src/com/ashera/custom"/>
      <source-file src="src/main/java/com/ashera/custom/CustomEventCommand.java" target-dir="src/com/ashera/custom"/>
      <source-file src="android/src/com/ashera/custom/CustomCordovaPlugin.java" target-dir="src/com/ashera/custom"/>
+     <source-file src="res/values/custom_strings.xml" target-dir="res/values"/>
   </platform>
   <platform name="ios">
     <config-file target="config.xml" parent="/widget">
